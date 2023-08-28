@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\Coding Folder\C++\OpenCV_Projects\Image_Thresholding\Still_Image\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Coding Folder\C++\OpenCV_Projects\Image_Thresholding\Still_Image\CMakelists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0D2BCD8E-8B9A-3AF6-B241-881CAE461237}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
