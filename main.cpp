@@ -1,8 +1,25 @@
-#include <opencv2/opencv.hpp> // Include the main OpenCV header
+#include <opencv2/opencv.hpp> 
 #include <stdio.h>
 int main()
 {
     // The JPEG HAS to be grayscaled
+    /*
+        Notes about cv::imread()
+            - If image can't be read, it'll return an EMPTY matrix
+            - Following formats are supported
+                - Windows bitmaps - *.bmp, *.dib (always supported)
+                - JPEG files - *.jpeg, *.jpg, *.jpe (see the Note section)
+                - JPEG 2000 files - *.jp2 (see the Note section)
+                - Portable Network Graphics - *.png (see the Note section)
+                - WebP - *.webp (see the Note section)
+                - Portable image format - *.pbm, *.pgm, *.ppm *.pxm, *.pnm (always supported)
+                - Sun rasters - *.sr, *.ras (always supported)
+                - TIFF files - *.tiff, *.tif (see the Note section)
+                - OpenEXR Image files - *.exr (see the Note section)
+                - Radiance HDR - *.hdr, *.pic (always supported)
+                - Raster and Vector geospatial data supported by GDAL (see the Note section)
+            - For any references towards the note section, refer to OpenCV docs ---> https://docs.opencv.org/3.4/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56
+    */
     cv::Mat image = cv::imread("E:/Coding Folder/C++/OpenCV_Projects/Image_Thresholding/Still_Image/Screenshot 2023-08-27 202307.jpeg", cv::IMREAD_GRAYSCALE);
     if (image.empty())
     {
@@ -11,7 +28,10 @@ int main()
         return -1;
     }
 
+    // Holds the output from the cv::Canny() function
     cv::Mat edges;
+
+    // void cv::Canny(cv::InputArray image, cv::OutputArray edges, double threshold1, double threshold2, int apertureSize = 3, bool L2gradient = false)
     cv::Canny(image, edges, 100, 150);
 
     // Display the original image and the edges side by side
@@ -37,9 +57,18 @@ int main()
             - Compatibility
                 - Most processing algorithms/functions in OpenCV use CV_8UC1 for grayscale operations
     */
+
+    // Creates new image that'll 'hold' the original grayscale image and teh edges image side by side
     cv::Mat combinedImage(image.rows, image.cols * 2, CV_8UC1);
+
+    // Creates new MAT image that references a ROI within the `combinedImage`
+    // cv::Rect specifies position/dimensions of the ROI that starts at 0,0 adn has the same width/height as 'image'
     cv::Mat left(combinedImage, cv::Rect(0, 0, image.cols, image.rows));
+
+    // Copy original grayscaed image to the left side
     image.copyTo(left);
+
+    // The ROI starts to the RIGHT of `combinedImage`
     cv::Mat right(combinedImage, cv::Rect(image.cols, 0, image.cols, image.rows));
     edges.copyTo(right);
 
