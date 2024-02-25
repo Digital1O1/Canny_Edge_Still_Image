@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(DisplayImage)
 
-# Set the OpenCV directory
-#set(OpenCV_DIR "E:/Coding Folder/OpenCV Folder/build/install/x64/vc16/lib")
-set(OpenCV_DIR  "E:/Coding Folder/OpenCV Folder/build/install/x64/vc16/lib")
-#///////////////E:\Coding Folder\OpenCV Folder\build\win-install\x64\vc16\lib
+# Set the OpenCV directory, must point to lib files
+set(OpenCV_DIR "E:/Coding Folder/OpenCV Source Folder/build/install/x64/vc16/lib")
+
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)
 
